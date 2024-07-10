@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BookStore.Services;
+using BookStore.ViewModels;
+using BookStore.Views;
+using Microsoft.Extensions.Logging;
 
 namespace BookStore
 {
@@ -15,11 +18,33 @@ namespace BookStore
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.RegisterServices()
+                .RegisterViewModels()
+                .RegisterViews();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
+        }
+
+        public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
+        {
+
+            mauiAppBuilder.Services.AddTransient<BooksDatabase>();
+
+            return mauiAppBuilder;
+        }
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
+        {
+            mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
+            return mauiAppBuilder;
+        }
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+        {
+            mauiAppBuilder.Services.AddSingleton<HomePage>();
+            return mauiAppBuilder;
         }
     }
 }
