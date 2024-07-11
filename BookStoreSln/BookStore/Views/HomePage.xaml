@@ -20,5 +20,12 @@
             HorizontalOptions="Center" />
 
         <Button Text="Test" Command="{Binding SearchForBookCommand}"/>
+
+        <Label 
+            Text="{Binding BookName}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Button Text="Test" Command="{Binding GetBookDetailsCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

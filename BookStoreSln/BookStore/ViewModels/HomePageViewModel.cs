@@ -61,5 +61,22 @@ namespace BookStore.ViewModels
 
             }
         }
+
+        [RelayCommand]
+        public async void GetBookDetails()
+        {
+            string searchkey = "9781617294136";
+            HttpResponseMessage response = await _client.GetAsync($"https://api.itbook.store/1.0/search/{searchkey}");
+            response.EnsureSuccessStatusCode(); // Ensure success status code
+
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+            Root root = JsonConvert.DeserializeObject<Root>(jsonResponse);
+
+            if (root.books != null && root.books.Count > 0)
+            {
+                BookName = root.books[0].title;
+
+            }
+        }
     }
 }
