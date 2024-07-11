@@ -2,11 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookStore.Views.HomePage"
+             xmlns:vm="clr-namespace:BookStore.ViewModels"
+             x:DataType="vm:HomePageViewModel"
              Title="HomePage">
+
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="{Binding BookName}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button Text="Test" Command="{Binding GetBooksCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
