@@ -16,39 +16,35 @@
         </StackLayout>
         
         <!--All Books-->
-        <ScrollView>
-            <StackLayout>
-                <Frame BorderColor="Black" Margin="20">
+        <StackLayout>
+            <Frame BorderColor="Black" Margin="20">
+                <StackLayout>
                     <StackLayout>
-                        <StackLayout>
-                            <Label Text="Books" />
-                        </StackLayout>
-
-                        <ScrollView>
-                            <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
-                         SelectionMode="Single" x:Name="AllBooksCollectionView"
-                         SelectionChangedCommand="{Binding BookSelectedCommand}"
-                         SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType="models:Book">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Frame>
-                                                <Label Text="{Binding title}" />
-                                            </Frame>
-                                        </Grid>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </ScrollView>
+                        <Label Text="Books" />
                     </StackLayout>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
+
+                    <ScrollView>
+                        <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
+                                SelectionMode="Single" x:Name="AllBooksCollectionView"
+                                SelectionChangedCommand="{Binding BookSelectedCommand}"
+                                SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Book">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding title}" Grid.Column="0" Grid.Row="0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

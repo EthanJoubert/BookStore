@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookStore.Views.SearchPage"
+             xmlns:models="clr-namespace:BookStore.Models"
+             xmlns:vm="clr-namespace:BookStore.ViewModels"
+             x:DataType="vm:SearchPageViewModel"
+             Title="SearchPage">
+    <VerticalStackLayout>
+        <Entry x:Name="SearchEntry" Placeholder="Enter search term"
+               Text="{Binding SearchKey, Mode=TwoWay}" />
+
+        <Button Text="Test Search" Command="{Binding SearchForBookCommand}"/>
+
+        <CollectionView ItemsSource="{Binding BooksToDisplay}" Margin="0,10,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Book">
+                    <StackLayout Padding="10" BackgroundColor="#f0f0f0" Margin="0,0,0,10">
+                        <Label Text="{Binding title}" FontAttributes="Bold" FontSize="16" />
+                        <Label Text="{Binding subtitle}" FontSize="14" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </VerticalStackLayout>
+</ContentPage>

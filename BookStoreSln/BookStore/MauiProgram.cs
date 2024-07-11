@@ -39,12 +39,15 @@ namespace BookStore
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
+            mauiAppBuilder.Services.AddSingleton<BookPageViewModel>();
+            mauiAppBuilder.Services.AddSingleton<SearchPageViewModel>();
             return mauiAppBuilder;
         }
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<HomePage>();
             mauiAppBuilder.Services.AddSingleton<BookPage>();
+            mauiAppBuilder.Services.AddSingleton<SearchPage>();
             return mauiAppBuilder;
         }
     }
