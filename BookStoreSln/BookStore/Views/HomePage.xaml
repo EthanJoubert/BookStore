@@ -3,29 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookStore.Views.HomePage"
              xmlns:vm="clr-namespace:BookStore.ViewModels"
+             xmlns:models="clr-namespace:BookStore.Models"
              x:DataType="vm:HomePageViewModel"
              Title="HomePage">
 
     <VerticalStackLayout>
-        <Label 
-            Text="{Binding BookName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!--Heading-->
+        <StackLayout>
+            <Frame BorderColor="Black">
+                <Label Text="Programming Book Store" FontSize="20" FontAttributes="Bold" Margin="50, 0, 0, 0"/>
+            </Frame>
+        </StackLayout>
+        
+        <!--All Books-->
+        <ScrollView>
+            <StackLayout>
+                <Frame BorderColor="Black" Margin="20">
+                    <StackLayout>
+                        <StackLayout>
+                            <Label Text="Books" />
+                        </StackLayout>
 
-        <Button Text="Test" Command="{Binding GetBooksCommand}"/>
-
-        <Label 
-            Text="{Binding BookName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-        <Button Text="Test" Command="{Binding SearchForBookCommand}"/>
-
-        <Label 
-            Text="{Binding BookName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-        <Button Text="Test" Command="{Binding GetBookDetailsCommand}"/>
+                        <ScrollView>
+                            <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
+                         SelectionMode="Single" x:Name="AllBooksCollectionView"
+                         SelectionChangedCommand="{Binding BookSelectedCommand}"
+                         SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Book">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame>
+                                                <Label Text="{Binding title}" />
+                                            </Frame>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

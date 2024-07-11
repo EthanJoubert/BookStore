@@ -44,6 +44,7 @@ namespace BookStore
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<HomePage>();
+            mauiAppBuilder.Services.AddSingleton<BookPage>();
             return mauiAppBuilder;
         }
     }

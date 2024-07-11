@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,25 +13,32 @@ namespace BookStore.ViewModels
     public partial class HomePageViewModel : BaseViewModel
     {
         private string _bookname;
-
         public string BookName
         {
             get { return _bookname; }
             set { _bookname = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<Book> _bookstodisplay;
+        public ObservableCollection<Book> BooksToDisplay
+        {
+            get { return _bookstodisplay; }
+            set { _bookstodisplay = value; OnPropertyChanged(); }
+        }
+
+
         private HttpClient _client;
 
         public HomePageViewModel() 
         {
             _client = new HttpClient();
+            GetBooks();
         }
-
+        
 
         [RelayCommand]
         public async void GetBooks()
         {
-            //List<Book> books = new List<Book>();
 
             HttpResponseMessage response = await _client.GetAsync("https://api.itbook.store/1.0/new");
             response.EnsureSuccessStatusCode(); // Ensure success status code
@@ -41,7 +49,7 @@ namespace BookStore.ViewModels
             if (root.books != null && root.books.Count > 0)
             {
                 // Access the title of the first book
-                BookName = root.books[0].title;
+                BooksToDisplay = new ObservableCollection<Book>(root.books);
             }
         }
 
@@ -77,6 +85,19 @@ namespace BookStore.ViewModels
                 BookName = root.books[0].title;
 
             }
+        }
+
+
+
+        [RelayCommand]
+        public static async Task BookSelected(Book books)
+        {
+            var navigationParameter = new Dictionary<string, object>
+           {
+                { "Book", books }
+           };
+            await Shell.Current.GoToAsync($"book", navigationParameter);
+
         }
     }
 }
