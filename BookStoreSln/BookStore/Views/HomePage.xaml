@@ -15,36 +15,67 @@
             </Frame>
         </StackLayout>
         
-        <!--All Books-->
-        <StackLayout>
-            <Frame BorderColor="Black" Margin="20">
+        <!--Main Page-->
+        <ScrollView VerticalOptions="Center">
+            <StackLayout>
+                <!--Books Coming Soon-->
                 <StackLayout>
-                    <StackLayout>
-                        <Label Text="Books" />
-                    </StackLayout>
-
-                    <ScrollView>
-                        <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
-                                SelectionMode="Single" x:Name="AllBooksCollectionView"
-                                SelectionChangedCommand="{Binding BookSelectedCommand}"
-                                SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Book">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding title}" Grid.Column="0" Grid.Row="0"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </ScrollView>
+                    <Frame BorderColor="Black">
+                        <Label Text="Coming Soon"/>
+                    </Frame>
+                    <Frame BorderColor="Black">
+                        <ScrollView Orientation="Horizontal">
+                            <CollectionView ItemsSource="{Binding ComingSoonBooks}" ItemsLayout="HorizontalList">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Book">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding title}" Grid.Column="0" Grid.Row="0" Margin="20, 0, 70, 0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </Frame>
                 </StackLayout>
-            </Frame>
-        </StackLayout>
+                
+                <!--All Books-->
+                <StackLayout>
+                    <Frame BorderColor="Black" Margin="20">
+                        <StackLayout>
+                            <StackLayout>
+                                <Label Text="Books" />
+                            </StackLayout>
+
+                            <ScrollView>
+                                <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
+                                        SelectionMode="Single" x:Name="AllBooksCollectionView"
+                                        SelectionChangedCommand="{Binding BookSelectedCommand}"
+                                        SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Book">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding title}" Grid.Column="0" Grid.Row="0"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
