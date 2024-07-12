@@ -49,41 +49,52 @@
                         </ScrollView>
                     </StackLayout>
                 </StackLayout>
-
+                
+                
+                <!--Line break-->
                 <StackLayout>
                     <BoxView Color="Black" HeightRequest="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="250, 70, 250, 0"/>
-
                 </StackLayout>
 
 
                 <!--All Books-->
-                <StackLayout>
-                    <Label Text="All Books" FontSize="40" Margin="20, 50, 0 , 10" FontAttributes="Bold"/>
-                    <Frame BorderColor="Black" Margin="20, 0, 20, 0">
-                        <StackLayout>
-                            <ScrollView>
-                                <CollectionView ItemsSource="{Binding BooksToDisplay}" ItemSizingStrategy="MeasureAllItems"
-                                        SelectionMode="Single" x:Name="AllBooksCollectionView"
+                <Label Text="All Books" FontSize="40" Margin="20, 50, 0, 0" FontAttributes="Bold"/>
+                <Frame BorderColor="Black" Margin="20">
+                    <StackLayout>
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <StackLayout>
+                                <CollectionView ItemsSource="{Binding BooksToDisplay}"
+                                        ItemSizingStrategy="MeasureAllItems"
+                                        SelectionMode="Single"
                                         SelectionChangedCommand="{Binding BookSelectedCommand}"
-                                        SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference AllBooksCollectionView}}">
+                                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AllBooksCollectionView}}">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Vertical" />
+                                    </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate x:DataType="models:Book">
                                             <Grid>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <Label Text="{Binding title}" Grid.Column="0" Grid.Row="0"/>
+                                                <Image Source="{Binding image}" Grid.Column="0" Grid.RowSpan="3" WidthRequest="100" HeightRequest="100"/>
+                                                <Label Text="{Binding title}" Grid.Column="1" Grid.Row="1" Margin="0, 10, 0, 10"/>
+                                                <Label Text="{Binding price}" Grid.Column="1" Grid.Row="2" />
                                             </Grid>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
-                            </ScrollView>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+                
             </StackLayout>
         </ScrollView>
     </VerticalStackLayout>
