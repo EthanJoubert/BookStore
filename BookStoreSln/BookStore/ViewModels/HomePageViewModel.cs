@@ -1,4 +1,5 @@
 ﻿using BookStore.Models;
+using BookStore.Services;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using System;
@@ -26,13 +27,23 @@ namespace BookStore.ViewModels
             set { _bookstodisplay = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<Book> _comingsoonbooks;
+        public ObservableCollection<Book> ComingSoonBooks
+        {
+            get { return _comingsoonbooks; }
+            set { _comingsoonbooks = value; OnPropertyChanged(); }
+        }
+
 
         private HttpClient _client;
+        private BooksDatabase _bookdatabase;
 
-        public HomePageViewModel() 
+        public HomePageViewModel(BooksDatabase database) 
         {
             _client = new HttpClient();
+            _bookdatabase = database;
             GetBooks();
+            ComingSoonBooks = new ObservableCollection<Book>(_bookdatabase.GetComingSoonBooks());
         }
         
 
