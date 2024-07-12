@@ -16,6 +16,7 @@ namespace BookStore.Services
         {
             _dbConnection = new SQLiteConnection(GetDatabasePath());
             _dbConnection.CreateTable<Book>();
+            _dbConnection.CreateTable<Cart>();
             SeedDatabase();
         }
         public string GetDatabasePath()
@@ -76,12 +77,42 @@ namespace BookStore.Services
                 };
                 _dbConnection.Insert(book6);
             }
+
+
+            // Cart
+            if (_dbConnection.Table<Cart>().Count() == 0)
+            {
+                Cart cart = new Cart()
+                {
+                    title = "Title 6",
+                    image = "dotnet_bot.png",
+                    price = "R 100"
+                };
+                _dbConnection.Insert(cart);
+            }
         }
 
         // Methods
         public List<Book> GetComingSoonBooks()
         {
             return _dbConnection.Table<Book>().ToList();
+        }
+
+
+        // Cart Methods
+        public void AddToCart(Book book)
+        {
+            Cart cartItem = new Cart()
+            {
+                title = book.title,
+                image = book.image,
+                price = book.price,
+            };
+            _dbConnection.Insert(cartItem);
+        }
+        public List<Cart> GetCartItems()
+        {
+            return _dbConnection.Table<Cart>().ToList();
         }
     }
 }
