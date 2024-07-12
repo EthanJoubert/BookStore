@@ -86,5 +86,12 @@ namespace BookStore.ViewModels
             await Shell.Current.GoToAsync($"book", navigationParameter);
 
         }
+
+        [RelayCommand]
+        public void AddBookToCart(Book book)
+        {
+            _bookdatabase.AddToCart(book);
+            Shell.Current.DisplayAlert("Item Added", $"{book.title} was added to your cart!", "ok");
+        }
     }
 }
