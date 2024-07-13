@@ -33,6 +33,26 @@ namespace BookStore.ViewModels
                 _book = value;
                 Books = new ObservableCollection<Book>();
                 OnPropertyChanged();
+            //    if (_book != null)
+            //    {
+            //        GetBookDetails();
+            //    }
+            }
+        }
+
+        private ExtraBookDetails _bookdetails;
+        public ExtraBookDetails BookDetailsAgain
+        {
+            get { return _bookdetails; }
+            set
+            {
+                _bookdetails = value;
+                //Books = new ObservableCollection<Book>();
+                OnPropertyChanged();
+                //if (_book != null)
+                //{
+                //    GetBookDetails();
+                //}
             }
         }
 
@@ -43,6 +63,7 @@ namespace BookStore.ViewModels
             _client = new HttpClient();
             Books = new ObservableCollection<Book>();
             GetBooks();
+            // GetBookDetails();
         }
 
         public async void GetBooks()
@@ -62,5 +83,23 @@ namespace BookStore.ViewModels
                 }
             }
         }
+
+        //public async void GetBookDetails()
+        //{
+        //    if (BookDetails == null || string.IsNullOrEmpty(BookDetails.isbn13))
+        //        return;
+
+        //    string searchKey = BookDetails.isbn13;
+        //    HttpResponseMessage response = await _client.GetAsync($"https://api.itbook.store/1.0/books/{searchKey}");
+        //    response.EnsureSuccessStatusCode();
+
+        //    string jsonResponse = await response.Content.ReadAsStringAsync();
+        //    ExtraBookDetails book = JsonConvert.DeserializeObject<ExtraBookDetails>(jsonResponse);
+
+        //    if (book != null)
+        //    {
+        //        BookDetailsAgain = book;
+        //    }
+        //}
     }
 }
