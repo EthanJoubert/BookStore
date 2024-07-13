@@ -41,6 +41,7 @@ namespace BookStore
             mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
             mauiAppBuilder.Services.AddSingleton<BookPageViewModel>();
             mauiAppBuilder.Services.AddSingleton<SearchPageViewModel>();
+            mauiAppBuilder.Services.AddSingleton<CartPageViewModel>();
             return mauiAppBuilder;
         }
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
@@ -48,6 +49,7 @@ namespace BookStore
             mauiAppBuilder.Services.AddSingleton<HomePage>();
             mauiAppBuilder.Services.AddSingleton<BookPage>();
             mauiAppBuilder.Services.AddSingleton<SearchPage>();
+            mauiAppBuilder.Services.AddSingleton<CartPage>();
             return mauiAppBuilder;
         }
     }
