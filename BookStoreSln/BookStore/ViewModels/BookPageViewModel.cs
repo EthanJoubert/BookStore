@@ -1,4 +1,5 @@
-﻿using BookStore.Models;
+﻿using AndroidX.Core.Util;
+using BookStore.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace BookStore.ViewModels
         public async void GetBooks()
         {
             HttpResponseMessage response = await _client.GetAsync("https://api.itbook.store/1.0/new");
-            response.EnsureSuccessStatusCode(); // Ensure success status code
+            response.EnsureSuccessStatusCode();
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
             Root root = JsonConvert.DeserializeObject<Root>(jsonResponse);
@@ -61,11 +62,6 @@ namespace BookStore.ViewModels
                     Books.Add(book);
                 }
             }
-        }
-
-        public void CurrentBookDetails()
-        {
-            BookTitle = BookDetails.title;
         }
     }
 }
