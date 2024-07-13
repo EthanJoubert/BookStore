@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:BookStore.ViewModels"
              x:DataType="vm:BookPageViewModel"
              Title="BookPage">
+    
     <VerticalStackLayout>
         <Label 
             Text="{Binding BookDetails.title}"

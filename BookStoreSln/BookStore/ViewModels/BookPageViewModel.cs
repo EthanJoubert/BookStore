@@ -31,7 +31,7 @@ namespace BookStore.ViewModels
             set
             {
                 _book = value;
-                GetBooks();
+                Books = new ObservableCollection<Book>();
                 OnPropertyChanged();
             }
         }
@@ -61,6 +61,11 @@ namespace BookStore.ViewModels
                     Books.Add(book);
                 }
             }
+        }
+
+        public void CurrentBookDetails()
+        {
+            BookTitle = BookDetails.title;
         }
     }
 }
