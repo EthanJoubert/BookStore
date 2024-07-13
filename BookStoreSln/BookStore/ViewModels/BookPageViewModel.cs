@@ -1,5 +1,4 @@
-﻿using AndroidX.Core.Util;
-using BookStore.Models;
+﻿using BookStore.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookStore.ViewModels
 {
-    [QueryProperty(nameof(Book), "Book")]
+    [QueryProperty(nameof(BookDetails), "Book")]
     public partial class BookPageViewModel : BaseViewModel
     {
         private ObservableCollection<Book> _books;
