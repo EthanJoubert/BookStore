@@ -8,9 +8,15 @@
     Shell.NavBarIsVisible="False"
     Title="BookStore">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:HomePage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <Tab Title="Books">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+        </Tab>
+        <Tab Title="Search">
+            <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" />
+        </Tab>
+        <Tab Title="Cart">
+            <ShellContent ContentTemplate="{DataTemplate local:CartPage}" />
+        </Tab>
+    </TabBar>
 </Shell>
