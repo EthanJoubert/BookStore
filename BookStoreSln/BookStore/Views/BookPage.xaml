@@ -6,11 +6,13 @@
              xmlns:models="clr-namespace:BookStore.Models"
              x:DataType="vm:BookPageViewModel"
              Title="BookPage">
-    
+
     <VerticalStackLayout>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -20,8 +22,15 @@
             <Frame Margin="0, 0, 20, 0" BorderColor="Black">
                 <StackLayout>
                     <Image Source="{Binding BookDetails.image}" Margin="10, 0, 10, 0" Grid.Column="0" Grid.Row="0" WidthRequest="200" HeightRequest="200"/>
-                    <Label Text="{Binding BookDetails.subtitle}" Grid.Column="0" Grid.Row="1"  Margin="10, 0, 10, 0"/>
-                    <Label Text="{Binding BookDetails.price}" Grid.Column="0" Grid.Row="2"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetails.title}" Grid.Column="0" Grid.Row="1"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetails.subtitle}" Grid.Column="0" Grid.Row="2"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetails.price}" Grid.Column="0" Grid.Row="3"  Margin="10, 0, 10, 0"/>
+
+                    <!-- Binding additional properties from BookDetailsAgain -->
+                    <Label Text="{Binding BookDetailsAgain.publisher}" Grid.Column="0" Grid.Row="4"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetailsAgain.language}" Grid.Column="0" Grid.Row="5"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetailsAgain.year}" Grid.Column="0" Grid.Row="6"  Margin="10, 0, 10, 0"/>
+                    <Label Text="{Binding BookDetailsAgain.pages}" Grid.Column="0" Grid.Row="7"  Margin="10, 0, 10, 0"/>
                 </StackLayout>
             </Frame>
         </Grid>
