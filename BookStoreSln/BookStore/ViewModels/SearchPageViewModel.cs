@@ -49,5 +49,17 @@ namespace BookStore.ViewModels
                 BooksToDisplay = new ObservableCollection<Book>(root.books);
             }
         }
+
+
+        [RelayCommand]
+        public static async Task BookSelected(Book books)
+        {
+            var navigationParameter = new Dictionary<string, object>
+           {
+                { "Book", books }
+           };
+            await Shell.Current.GoToAsync($"book", navigationParameter);
+
+        }
     }
 }

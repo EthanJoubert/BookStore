@@ -109,10 +109,27 @@ namespace BookStore.Services
                 price = book.price,
             };
             _dbConnection.Insert(cartItem);
+            _cartItems.Add(cartItem);
         }
+
+        private List<Cart> _cartItems = new List<Cart>();
         public List<Cart> GetCartItems()
         {
             return _dbConnection.Table<Cart>().ToList();
+        }
+
+        public void RemoveFromCart(int itemId)
+        {
+            var item = _cartItems.FirstOrDefault(i => i.Id == itemId);
+            if (item != null)
+            {
+                _cartItems.Remove(item);
+            }
+        }
+
+        public decimal GetTotalPrice()
+        {
+            return _cartItems.Sum(i => decimal.TryParse(i.price, out var price) ? price : 0);
         }
     }
 }

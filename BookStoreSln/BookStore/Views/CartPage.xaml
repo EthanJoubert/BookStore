@@ -9,7 +9,7 @@
     
     <VerticalStackLayout>
 
-        <CollectionView ItemsSource="{Binding CartItems}" ItemsLayout="HorizontalList">
+        <CollectionView ItemsSource="{Binding CartItems}"  HeightRequest="500">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Cart">
                     <Grid>
@@ -28,6 +28,13 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+
+        <StackLayout>
+            <Label Text="Total" FontSize="18" />
+            <Label Text="{Binding TotalPrice, StringFormat='{}{0:C}'}" FontSize="18" />
+            <Button Text="Checkout" Command="{Binding CheckoutCommand}" />
+        </StackLayout>
 
     </VerticalStackLayout>
 </ContentPage>
